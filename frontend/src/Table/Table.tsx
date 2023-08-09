@@ -31,12 +31,16 @@ function Table(): JSX.Element {
     }, {} as Record<string, string>)
   );
   const [editingColumn, setEditingColumn] = useState<string | null>(null);
-  const [tempColumnNames, setTempColumnNames] = useState<Record<string, string>>({});
+  const [tempColumnNames, setTempColumnNames] = useState<
+    Record<string, string>
+  >({});
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const toggleColumnVisibility = (dataField: string): void => {
     if (visibleColumns.includes(dataField)) {
-      setVisibleColumns(visibleColumns.filter((column) => column !== dataField));
+      setVisibleColumns(
+        visibleColumns.filter((column) => column !== dataField)
+      );
       setShowColumn(true);
     } else {
       setVisibleColumns([...visibleColumns, dataField]);
@@ -92,10 +96,18 @@ function Table(): JSX.Element {
 
   return (
     <div className="tableContainer">
-      <ModalWindow modalIsOpen={modalIsOpen} closeModal={closeModal} info={info} />
+      <ModalWindow
+        modalIsOpen={modalIsOpen}
+        closeModal={closeModal}
+        info={info}
+      />
       <div className="buttonsContainer">
         {showColumn ? (
-          <button className='showColumnsBtn' type="button" onClick={showAllColumns}>
+          <button
+            className="showColumnsBtn"
+            type="button"
+            onClick={showAllColumns}
+          >
             Показать скрытые колонки
           </button>
         ) : null}
@@ -113,7 +125,10 @@ function Table(): JSX.Element {
                           type="text"
                           value={tempColumnNames[column.dataField]}
                           onChange={(event) =>
-                            handleColumnNameChange(column.dataField, event.target.value)
+                            handleColumnNameChange(
+                              column.dataField,
+                              event.target.value
+                            )
                           }
                         />
                         <button
@@ -134,14 +149,28 @@ function Table(): JSX.Element {
                           type="button"
                           onClick={() => startEditingColumn(column.dataField)}
                         >
-                          <svg fill="currentColor" viewBox="0 0 16 16" height="1em" width="1em">
+                          <svg
+                            fill="currentColor"
+                            viewBox="0 0 16 16"
+                            height="1em"
+                            width="1em"
+                          >
                             <path d="M12.854.146a.5.5 0 00-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 000-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 01.5.5v.5h.5a.5.5 0 01.5.5v.5h.5a.5.5 0 01.5.5v.5h.5a.5.5 0 01.5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 016 13.5V13h-.5a.5.5 0 01-.5-.5V12h-.5a.5.5 0 01-.5-.5V11h-.5a.5.5 0 01-.5-.5V10h-.5a.499.499 0 01-.175-.032l-.179.178a.5.5 0 00-.11.168l-2 5a.5.5 0 00.65.65l5-2a.5.5 0 00.168-.11l.178-.178z" />
                           </svg>
                         </button>
                       </>
                     )}
-                    <button className="visibleBtn" type="button" onClick={() => toggleColumnVisibility(column.dataField)}>
-                      <svg viewBox="0 0 24 24" fill="currentColor" height="1em" width="1em">
+                    <button
+                      className="visibleBtn"
+                      type="button"
+                      onClick={() => toggleColumnVisibility(column.dataField)}
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        height="1em"
+                        width="1em"
+                      >
                         <path d="M8.073 12.194L4.212 8.333c-1.52 1.657-2.096 3.317-2.106 3.351L2 12l.105.316C2.127 12.383 4.421 19 12.054 19c.929 0 1.775-.102 2.552-.273l-2.746-2.746a3.987 3.987 0 01-3.787-3.787zM12.054 5c-1.855 0-3.375.404-4.642.998L3.707 2.293 2.293 3.707l18 18 1.414-1.414-3.298-3.298c2.638-1.953 3.579-4.637 3.593-4.679l.105-.316-.105-.316C21.98 11.617 19.687 5 12.054 5zm1.906 7.546c.187-.677.028-1.439-.492-1.96s-1.283-.679-1.96-.492L10 8.586A3.955 3.955 0 0112.054 8c2.206 0 4 1.794 4 4a3.94 3.94 0 01-.587 2.053l-1.507-1.507z" />
                       </svg>
                     </button>
@@ -155,16 +184,18 @@ function Table(): JSX.Element {
         <tbody>
           {currentData.map((row: ReportData, rowIndex: number) => (
             <tr key={rowIndex}>
-              {reportConfig.columns.map((column: ReportColumn, columnIndex: number) => {
-                if (visibleColumns.includes(column.dataField)) {
-                  return (
-                    <td key={columnIndex} onClick={() => openModal(row)}>
-                      {row[column.dataField]}
-                    </td>
-                  );
+              {reportConfig.columns.map(
+                (column: ReportColumn, columnIndex: number) => {
+                  if (visibleColumns.includes(column.dataField)) {
+                    return (
+                      <td key={columnIndex} onClick={() => openModal(row)}>
+                        {row[column.dataField]}
+                      </td>
+                    );
+                  }
+                  return null;
                 }
-                return null;
-              })}
+              )}
             </tr>
           ))}
         </tbody>
