@@ -1,0 +1,8 @@
+.pagination > button {
+  margin: 0.15em;
+}
+
+.pagination button.active {
+  background-color: #414242;
+  color: white;
+}

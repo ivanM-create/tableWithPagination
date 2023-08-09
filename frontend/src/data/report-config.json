@@ -1,0 +1,27 @@
+{
+  "name": "Отчет о продажах",
+  "code": "sales_report",
+  "columns": [
+    {
+      "dataField": "product",
+      "caption": "Товар",
+      "dataType": "string",
+      "format": "",
+      "alignment": "left"
+    },
+    {
+      "dataField": "quantity",
+      "caption": "Количество",
+      "dataType": "number",
+      "format": "0",
+      "alignment": "right"
+    },
+    {
+      "dataField": "price",
+      "caption": "Цена",
+      "dataType": "number",
+      "format": "0.00",
+      "alignment": "right"
+    }
+  ]
+}

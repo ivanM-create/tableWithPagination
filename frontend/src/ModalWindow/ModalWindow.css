@@ -1,0 +1,35 @@
+.custom-modal {
+  height: 300px;
+  width: 500px;
+  background-color: white;
+  border: solid black 1px;
+  margin-left: 35%;
+  margin-top: 15%;
+  background-image: linear-gradient(to bottom, #aeaeae, #bebdbe, #cfcdcd, #dfdddc, #eeeeec);
+}
+
+.modalWindow {
+}
+
+.modalWindow > h2 {
+  text-align: center;
+}
+
+.modalBlock {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.modalBlock > h4 {
+width: 90px;
+}
+
+
+.modalBlock > p {
+  margin-left: 20px;
+}
+
+.modalWindowCloseBtn {
+  margin-left: 40%;
+}
